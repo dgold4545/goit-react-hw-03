@@ -1,0 +1,12 @@
+.inputWidth {
+  width: 290px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  padding-block: 10px;
+  gap: 5px;
+}

@@ -1,0 +1,39 @@
+.borderBox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  /* border: 1px solid yellow; */
+  /* padding: 15px;
+  min-width: 200px;
+  max-width: 280px;
+  width: 100%; */
+}
+.space {
+  margin-bottom: 10px;
+}
+
+.borderBox > ul {
+  margin: 0;
+  padding: 0;
+}
+
+strong {
+  margin-right: 10px;
+}
+.borderBox a {
+  color: white;
+}
+
+.borderBox a:hover {
+  color: yellow;
+}
+
+.borderBox > button:hover {
+  color: #000;
+  background-color: #fff;
+}
+
+button {
+  height: 40px;
+}
