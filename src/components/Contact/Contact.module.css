@@ -1,39 +1,21 @@
 .borderBox {
+  width: 360px;
+
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+  border-radius: 6px;
+  padding: 12px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  /* border: 1px solid yellow; */
-  /* padding: 15px;
-  min-width: 200px;
-  max-width: 280px;
-  width: 100%; */
-}
-.space {
-  margin-bottom: 10px;
+  justify-content: space-between;
 }
 
-.borderBox > ul {
-  margin: 0;
-  padding: 0;
+b {
+  display: inline-block;
+  margin-right: 8px;
 }
 
-strong {
-  margin-right: 10px;
-}
 .borderBox a {
-  color: white;
-}
-
-.borderBox a:hover {
-  color: violet;
-}
-
-.borderBox > button:hover {
-  color: #000;
-  background-color: #fff;
-}
-
-button {
-  height: 40px;
+  color: currentColor;
 }

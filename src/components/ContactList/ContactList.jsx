@@ -1,16 +1,19 @@
 import Contact from "../Contact/Contact";
-import css from "./ContactList.module.css";
+import styles from "./ContactList.module.css";
 
-export default function ContactList({ contacts, onDelete }) {
+export default function ContactList({ contacts, onHandleDelete }) {
   return (
-    <ul className={css.flexBox}>
-      {contacts.map((contact) => {
-        return (
-          <li key={contact.id} className={css.contactBox}>
-            <Contact contactData={contact} onDelete={onDelete} />
-          </li>
-        );
-      })}
+    <ul className={styles.flexBox}>
+      {contacts.map(({ id, name, number }) => (
+        <li key={id}>
+          <Contact
+            id={id}
+            name={name}
+            number={number}
+            onHandleDelete={onHandleDelete}
+          />
+        </li>
+      ))}
     </ul>
   );
 }
