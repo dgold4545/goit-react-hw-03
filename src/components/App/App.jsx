@@ -1,60 +1,54 @@
-import { useState, useEffect } from "react";
-import css from "./App.module.css";
-import initialContacts from "../../initialValue.json";
-
-import ContactFrom from "../ContactForm/ContactForm";
-import SearchBox from "../SearchBox/SearchBox";
+import ContactForm from "../ContactForm/ContactForm";
 import ContactList from "../ContactList/ContactList";
+import SearchBox from "../SearchBox/SearchBox";
 
-const LOCAL_STORAGE_KEY = "phonebook";
+import contactsListData from "../../contactsListData.json";
+import styles from "./App.module.css";
+import { useEffect, useState } from "react";
+
+const CONTACT_LIST_LS_KEY = "contact_list_key";
 
 export default function App() {
-  const [searchContacts, setSearchContacts] = useState(() => {
-    const localStorageSavedData =
-      window.localStorage.getItem(LOCAL_STORAGE_KEY);
-
-    if (localStorageSavedData !== null) {
-      return JSON.parse(localStorageSavedData);
-    }
-
-    return initialContacts;
-  });
-
-  const [findContact, setFindContact] = useState("");
-
-  const seekContacts = searchContacts.filter((contact) =>
-    contact.name.toLowerCase().includes(findContact.toLowerCase())
+  const [contactList, setContactList] = useState(() =>
+    window.localStorage.getItem(CONTACT_LIST_LS_KEY) !== null
+      ? JSON.parse(window.localStorage.getItem(CONTACT_LIST_LS_KEY))
+      : contactsListData || []
   );
-
-  const addContact = (newContact) => {
-    setSearchContacts((prevContacts) => {
-      return [...prevContacts, newContact];
-    });
-  };
-
-  const handlerDelete = (taskId) => {
-    setSearchContacts((prevTasks) => {
-      return prevTasks.filter((task) => task.id !== taskId);
-    });
-  };
 
   useEffect(() => {
     window.localStorage.setItem(
-      LOCAL_STORAGE_KEY,
-      JSON.stringify(searchContacts)
+      CONTACT_LIST_LS_KEY,
+      JSON.stringify(contactList)
     );
-  }, [searchContacts]);
+  }, [contactList]);
+
+  const [filterData, setFilterData] = useState("");
+
+  const filteredContactsList = contactList.filter(
+    (contact) =>
+      contact.name.toLowerCase().includes(filterData.toLowerCase().trim()) ||
+      contact.number.includes(filterData.trim())
+  );
+
+  const handelAddContact = (newContact) => {
+    setContactList((prevContact) => [...prevContact, newContact]);
+  };
+
+  const handleDeleteContact = (contactId) => {
+    setContactList((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== contactId)
+    );
+  };
 
   return (
-    <div className={css.phonebook}>
+    <div>
       <h1>Phonebook</h1>
-
-      <ContactFrom onAddContact={addContact} />
-      <SearchBox
-        searchContact={findContact}
-        onSetSearchContact={setFindContact}
+      <ContactForm onAddContact={handelAddContact} />
+      <SearchBox filterData={filterData} onHandleFilter={setFilterData} />
+      <ContactList
+        contacts={filteredContactsList}
+        onHandleDelete={handleDeleteContact}
       />
-      <ContactList contacts={seekContacts} onDelete={handlerDelete} />
     </div>
   );
 }

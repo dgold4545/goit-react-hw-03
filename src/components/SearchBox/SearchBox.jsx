@@ -1,21 +1,22 @@
-import css from "./SearchBox.module.css";
 import { useId } from "react";
+import styles from "./SearchBox.module.css";
 
-export default function SearchBox({ searchContact, onSetSearchContact }) {
-  const ID = useId();
+export default function SearchBox({ filterData, onHandleFilter }) {
+  const filterId = useId();
 
   return (
-    <div className={css.box}>
-      <label htmlFor={`contactName-${ID}`}>Find contacts by name</label>
+    <div className={styles.box}>
+      <label htmlFor={filterId} className={styles.label}>
+        Find contacts by name
+      </label>
+
       <input
-        id={`contactName-${ID}`}
-        className={css.inputWidth}
         type="text"
-        name="contactName"
-        value={searchContact}
-        onChange={(event) => {
-          onSetSearchContact(event.target.value);
-        }}
+        id={filterId}
+        className={styles.inputWidth}
+        placeholder="Name"
+        value={filterData}
+        onChange={(event) => onHandleFilter(event.target.value)}
       />
     </div>
   );

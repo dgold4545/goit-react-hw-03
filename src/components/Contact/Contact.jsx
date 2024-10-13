@@ -1,34 +1,27 @@
-import css from "./Contact.module.css";
 import { FaPhoneAlt, FaUser } from "react-icons/fa";
 
-export default function Contact({
-  contactData: { name, number, id },
-  onDelete,
-}) {
-  const phoneHolder = "tel:+" + number.replace("-", "").replace("-", "");
+import styles from "./Contact.module.css";
+
+export default function Contact({ id, name, number, onHandleDelete }) {
+  const correctTellNumber = `tel:+${number.replaceAll("-", "")}`;
 
   return (
-    <div className={css.borderBox}>
+    <div className={styles.borderBox}>
       <ul>
-        <li className={css.space}>
-          <strong>
-            <FaPhoneAlt />
-          </strong>
+        <li>
+          <b>
+            <FaUser />
+          </b>{" "}
           {name}
         </li>
         <li>
-          <strong>
-            <FaUser />
-          </strong>
-          <a href={phoneHolder}>{number}</a>
+          <b>
+            <FaPhoneAlt />
+          </b>{" "}
+          <a href={correctTellNumber}>{number}</a>
         </li>
       </ul>
-      <button
-        type="button"
-        onClick={() => {
-          onDelete(id);
-        }}
-      >
+      <button type="button" onClick={() => onHandleDelete(id)}>
         Delete
       </button>
     </div>

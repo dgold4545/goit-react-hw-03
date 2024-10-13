@@ -1,7 +1,13 @@
 .inputWidth {
-  width: 290px;
+  width: 360px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 20px;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+.inputWidth::placeholder {
+  color: lightgrey;
 }
 
 .box {
@@ -9,4 +15,9 @@
   flex-direction: column;
   padding-block: 10px;
   gap: 5px;
+  margin-bottom: 12px;
+}
+
+.label {
+  font-size: 24px;
 }
