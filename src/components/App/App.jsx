@@ -9,10 +9,8 @@ import { useEffect, useState } from "react";
 const CONTACT_LIST_LS_KEY = "contact_list_key";
 
 export default function App() {
-  const [contactList, setContactList] = useState(() =>
-    window.localStorage.getItem(CONTACT_LIST_LS_KEY) !== null
-      ? JSON.parse(window.localStorage.getItem(CONTACT_LIST_LS_KEY))
-      : contactsListData || []
+  const [contactList, setContactList] = useState(
+    () => JSON.parse(window.localStorage.getItem(CONTACT_LIST_LS_KEY)) ?? []
   );
 
   useEffect(() => {
@@ -42,7 +40,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>Phonebook</h1>
+      <h1 className={styles.title}>Phonebook</h1>
       <ContactForm onAddContact={handelAddContact} />
       <SearchBox filterData={filterData} onHandleFilter={setFilterData} />
       <ContactList
