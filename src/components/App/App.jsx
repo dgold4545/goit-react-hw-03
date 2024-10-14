@@ -10,7 +10,9 @@ const CONTACT_LIST_LS_KEY = "contact_list_key";
 
 export default function App() {
   const [contactList, setContactList] = useState(
-    () => JSON.parse(window.localStorage.getItem(CONTACT_LIST_LS_KEY)) ?? []
+    () =>
+      JSON.parse(window.localStorage.getItem(CONTACT_LIST_LS_KEY)) ??
+      contactsListData
   );
 
   useEffect(() => {
